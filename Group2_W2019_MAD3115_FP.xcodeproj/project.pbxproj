@@ -12,6 +12,8 @@
 		048FA8BD223A2A3300BAEDCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048FA8BB223A2A3300BAEDCF /* Main.storyboard */; };
 		048FA8BF223A2A3500BAEDCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 048FA8BE223A2A3500BAEDCF /* Assets.xcassets */; };
 		048FA8C2223A2A3500BAEDCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048FA8C0223A2A3500BAEDCF /* LaunchScreen.storyboard */; };
+		048FA8CB223A490700BAEDCF /* SpecialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FA8CA223A490700BAEDCF /* SpecialButton.swift */; };
+		048FA8CD223A4A4200BAEDCF /* SpecialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FA8CC223A4A4200BAEDCF /* SpecialTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		048FA8BE223A2A3500BAEDCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		048FA8C1223A2A3500BAEDCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048FA8C3223A2A3500BAEDCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		048FA8CA223A490700BAEDCF /* SpecialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialButton.swift; sourceTree = "<group>"; };
+		048FA8CC223A4A4200BAEDCF /* SpecialTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				048FA8B6223A2A3300BAEDCF /* Group2_W2019_MAD3115_FP */,
+				048FA8C9223A484900BAEDCF /* Views */,
 				048FA8B5223A2A3300BAEDCF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +67,15 @@
 				048FA8C3223A2A3500BAEDCF /* Info.plist */,
 			);
 			path = Group2_W2019_MAD3115_FP;
+			sourceTree = "<group>";
+		};
+		048FA8C9223A484900BAEDCF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				048FA8CA223A490700BAEDCF /* SpecialButton.swift */,
+				048FA8CC223A4A4200BAEDCF /* SpecialTextField.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +150,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				048FA8BA223A2A3300BAEDCF /* ViewController.swift in Sources */,
+				048FA8CB223A490700BAEDCF /* SpecialButton.swift in Sources */,
 				048FA8B8223A2A3300BAEDCF /* AppDelegate.swift in Sources */,
+				048FA8CD223A4A4200BAEDCF /* SpecialTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
