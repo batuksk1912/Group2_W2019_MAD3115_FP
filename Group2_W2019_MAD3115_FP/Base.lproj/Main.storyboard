@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Group2_W2019_MAD3115_FP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Group2_W2019_MAD3115_FP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,9 +66,6 @@
                                 <state key="normal" title="SIGN IN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <segue destination="6Aa-DW-Ffu" kind="show" id="FeV-2h-Seq"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -99,58 +96,56 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="105.69715142428787"/>
         </scene>
-        <!--Home View Controller-->
-        <scene sceneID="xo1-l8-uRm">
+        <!--Home Table View Controller-->
+        <scene sceneID="0Jp-MA-Y0O">
             <objects>
-                <viewController id="6Aa-DW-Ffu" customClass="HomeViewController" customModule="Group2_W2019_MAD3115_FP" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5Ci-Oa-pDl">
+                <tableViewController id="OMn-qL-s93" customClass="HomeTableViewController" customModule="Group2_W2019_MAD3115_FP" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wmG-al-Uqy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="7Xm-96-hNG">
-                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="mpJ-0m-AiL" firstAttribute="bottom" secondItem="7Xm-96-hNG" secondAttribute="bottom" id="5uX-fK-Vfh"/>
-                            <constraint firstItem="7Xm-96-hNG" firstAttribute="top" secondItem="mpJ-0m-AiL" secondAttribute="top" id="SJM-Ml-My5"/>
-                            <constraint firstItem="mpJ-0m-AiL" firstAttribute="trailing" secondItem="7Xm-96-hNG" secondAttribute="trailing" id="SZE-Rh-mgU"/>
-                            <constraint firstItem="7Xm-96-hNG" firstAttribute="leading" secondItem="mpJ-0m-AiL" secondAttribute="leading" id="gVw-GW-p4a"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="mpJ-0m-AiL"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="nD6-du-zXo"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yaH-MJ-yFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Vwx-X1-ivX">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vwx-X1-ivX" id="D5J-bl-GAD">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OMn-qL-s93" id="1Uv-JM-Eou"/>
+                            <outlet property="delegate" destination="OMn-qL-s93" id="m9R-vy-JEI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GHt-Wq-XES"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VNA-dF-grG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886.9565217391305" y="103.53260869565219"/>
+            <point key="canvasLocation" x="1629" y="105"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="a8A-Ol-yMz">
+        <!--Main Navigation Controller-->
+        <scene sceneID="Z5n-JJ-xG6">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PWK-tC-kTT" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oqe-XL-CAA" customClass="MainNavigationController" customModule="Group2_W2019_MAD3115_FP" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="h3m-6P-irZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OTW-VL-DSO">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6Aa-DW-Ffu" kind="relationship" relationship="rootViewController" id="2V4-Ha-YIx"/>
+                        <segue destination="OMn-qL-s93" kind="relationship" relationship="rootViewController" id="YDn-ln-baT"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oou-g2-cH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4oY-KM-Qe5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="979.71014492753636" y="103.53260869565219"/>
+            <point key="canvasLocation" x="835" y="105"/>
         </scene>
     </scenes>
     <resources>
-        <image name="1.png" width="1000" height="1000"/>
         <image name="ShoppingCart" width="136.55999755859375" height="165.1199951171875"/>
         <image name="mainbg" width="640" height="1136"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="FeV-2h-Seq"/>
-    </inferredMetricsTieBreakers>
 </document>
