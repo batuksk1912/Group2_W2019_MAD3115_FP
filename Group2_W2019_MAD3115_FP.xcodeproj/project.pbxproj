@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04270B6622458E44007ED903 /* Group2_W2019_MAD3115_FP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04270B6422458E44007ED903 /* Group2_W2019_MAD3115_FP.xcdatamodeld */; };
 		04270B68224590F7007ED903 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04270B67224590F7007ED903 /* HomeTableViewController.swift */; };
 		04270B6A2245916C007ED903 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04270B692245916C007ED903 /* MainNavigationController.swift */; };
 		048FA8B8223A2A3300BAEDCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FA8B7223A2A3300BAEDCF /* AppDelegate.swift */; };
@@ -17,10 +16,10 @@
 		048FA8C2223A2A3500BAEDCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048FA8C0223A2A3500BAEDCF /* LaunchScreen.storyboard */; };
 		048FA8CB223A490700BAEDCF /* SpecialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FA8CA223A490700BAEDCF /* SpecialButton.swift */; };
 		048FA8CD223A4A4200BAEDCF /* SpecialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FA8CC223A4A4200BAEDCF /* SpecialTextField.swift */; };
+		D836B9B022459882007DE33C /* Group2_W2019_MAD3115_FP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D836B9AE22459881007DE33C /* Group2_W2019_MAD3115_FP.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04270B6522458E44007ED903 /* Group2_W2019_MAD3115_FP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Group2_W2019_MAD3115_FP.xcdatamodel; sourceTree = "<group>"; };
 		04270B67224590F7007ED903 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		04270B692245916C007ED903 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		048FA8B4223A2A3300BAEDCF /* Group2_W2019_MAD3115_FP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Group2_W2019_MAD3115_FP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +31,7 @@
 		048FA8C3223A2A3500BAEDCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048FA8CA223A490700BAEDCF /* SpecialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialButton.swift; sourceTree = "<group>"; };
 		048FA8CC223A4A4200BAEDCF /* SpecialTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialTextField.swift; sourceTree = "<group>"; };
+		D836B9AF22459881007DE33C /* Group2_W2019_MAD3115_FP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Group2_W2019_MAD3115_FP.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,7 @@
 		047D0B2E22458DC90067EE0B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				04270B6422458E44007ED903 /* Group2_W2019_MAD3115_FP.xcdatamodeld */,
+				D836B9AE22459881007DE33C /* Group2_W2019_MAD3115_FP.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,8 +177,8 @@
 				04270B68224590F7007ED903 /* HomeTableViewController.swift in Sources */,
 				048FA8BA223A2A3300BAEDCF /* LoginViewController.swift in Sources */,
 				048FA8CB223A490700BAEDCF /* SpecialButton.swift in Sources */,
-				04270B6622458E44007ED903 /* Group2_W2019_MAD3115_FP.xcdatamodeld in Sources */,
 				04270B6A2245916C007ED903 /* MainNavigationController.swift in Sources */,
+				D836B9B022459882007DE33C /* Group2_W2019_MAD3115_FP.xcdatamodeld in Sources */,
 				048FA8B8223A2A3300BAEDCF /* AppDelegate.swift in Sources */,
 				048FA8CD223A4A4200BAEDCF /* SpecialTextField.swift in Sources */,
 			);
@@ -386,12 +386,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		04270B6422458E44007ED903 /* Group2_W2019_MAD3115_FP.xcdatamodeld */ = {
+		D836B9AE22459881007DE33C /* Group2_W2019_MAD3115_FP.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				04270B6522458E44007ED903 /* Group2_W2019_MAD3115_FP.xcdatamodel */,
+				D836B9AF22459881007DE33C /* Group2_W2019_MAD3115_FP.xcdatamodel */,
 			);
-			currentVersion = 04270B6522458E44007ED903 /* Group2_W2019_MAD3115_FP.xcdatamodel */;
+			currentVersion = D836B9AF22459881007DE33C /* Group2_W2019_MAD3115_FP.xcdatamodel */;
 			path = Group2_W2019_MAD3115_FP.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -66,6 +66,9 @@
                                 <state key="normal" title="SIGN IN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hX3-J8-xiL"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -91,6 +94,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="password" destination="CLi-XR-amU" id="5Ir-Je-pE4"/>
+                        <outlet property="rememberMe" destination="Xpq-ng-93Y" id="WCF-J9-e0J"/>
+                        <outlet property="userName" destination="IPB-oa-xv4" id="xSM-4i-0yW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -128,7 +136,7 @@
         <!--Main Navigation Controller-->
         <scene sceneID="Z5n-JJ-xG6">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oqe-XL-CAA" customClass="MainNavigationController" customModule="Group2_W2019_MAD3115_FP" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mainNC" automaticallyAdjustsScrollViewInsets="NO" id="oqe-XL-CAA" customClass="MainNavigationController" customModule="Group2_W2019_MAD3115_FP" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OTW-VL-DSO">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
