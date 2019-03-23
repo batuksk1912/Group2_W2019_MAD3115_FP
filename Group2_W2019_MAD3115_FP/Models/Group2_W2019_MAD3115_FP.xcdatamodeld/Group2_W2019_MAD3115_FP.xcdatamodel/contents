@@ -46,6 +46,7 @@
     </entity>
     <entity name="ShoppingCart" representedClassName="ShoppingCart" syncable="YES" codeGenerationType="class">
         <attribute name="cartId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customerId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateAdded" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -63,7 +64,7 @@
         <element name="Orders" positionX="-24.41015625" positionY="-359.44921875" width="128" height="195"/>
         <element name="Products" positionX="396.9296875" positionY="-393.9765625" width="128" height="118"/>
         <element name="ShippingInfo" positionX="-90.8046875" positionY="-68.08203125" width="128" height="105"/>
-        <element name="ShoppingCart" positionX="-243.484375" positionY="-106.546875" width="128" height="133"/>
+        <element name="ShoppingCart" positionX="-243.484375" positionY="-106.546875" width="128" height="148"/>
         <element name="User" positionX="-62.953125" positionY="-467.0078125" width="128" height="88"/>
     </elements>
 </model>

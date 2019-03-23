@@ -25,6 +25,7 @@ class HomeTableViewController: UITableViewController {
                 performSegue(withIdentifier: "viewProducts", sender: nil)
             case 1:
                 print("View Cart")
+                performSegue(withIdentifier: "viewShoppingCart", sender: nil)
             default:
                 print("Error!")
             }
