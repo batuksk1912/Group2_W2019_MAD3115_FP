@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class LoginViewController: UIViewController {
 
@@ -16,26 +17,59 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var rememberMe: UISwitch!
     
-    
+    var fetchedCustomer : [Customer] = []
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let customerEntity = NSEntityDescription.entity(forEntityName: "Customer", in: managedContext)!
+        let customer = NSManagedObject(entity: customerEntity, insertInto: managedContext)
+        
+        customer.setValue("1", forKey: "userId")
+        customer.setValue("test", forKey: "password")
+        
+        do {
+            try managedContext.save()
+            print("saved.")
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+        
         let userDefault = UserDefaults.standard
+        
         
         if let email = userDefault.string(forKey: "userEmail"){
             userName.text = email
         }
         if let pwd = userDefault.string(forKey: "userPassword"){
             password.text = pwd
-            
             rememberMe.isOn = true
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    func getData()
+    {
+        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do{
+            fetchedCustomer = try managedContext.fetch(Customer.fetchRequest())
+        }
+        catch{
+            print("Fetch Failed")
+        }
+    }
 
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         
-        if(userName.text == "test" && password.text == "123")
+        getData()
+        
+        if(userName.text == fetchedCustomer[0].userId && password.text == fetchedCustomer[0].password)
         {
             let userDefault =  UserDefaults.standard
             if rememberMe.isOn
