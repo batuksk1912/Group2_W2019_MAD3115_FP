@@ -12,37 +12,14 @@ import CoreData
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var userName: UITextField!
-    
     @IBOutlet weak var password: UITextField!
-    
     @IBOutlet weak var rememberMe: UISwitch!
     
     var fetchedCustomer : [Customer] = []
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let customerEntity = NSEntityDescription.entity(forEntityName: "Customer", in: managedContext)!
-        let customer = NSManagedObject(entity: customerEntity, insertInto: managedContext)
-        
-        customer.setValue("1", forKey: "userId")
-        customer.setValue("test", forKey: "password")
-        
-        do {
-            try managedContext.save()
-            print("saved.")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-        
-        
         let userDefault = UserDefaults.standard
-        
-        
         if let email = userDefault.string(forKey: "userEmail"){
             userName.text = email
         }
@@ -50,7 +27,6 @@ class LoginViewController: UIViewController {
             password.text = pwd
             rememberMe.isOn = true
         }
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func getData()
@@ -64,37 +40,64 @@ class LoginViewController: UIViewController {
             print("Fetch Failed")
         }
     }
-
-    @IBAction func loginButtonTapped(_ sender: UIButton) {
-        
-        getData()
-        
-        if(userName.text == fetchedCustomer[0].userId && password.text == fetchedCustomer[0].password)
-        {
-            let userDefault =  UserDefaults.standard
-            if rememberMe.isOn
-            {
-                userDefault.set(userName.text, forKey: "userEmail")
-                userDefault.set(password.text, forKey: "userPassword")
-            } else {
-                print("Remove User/Password if previously stored...")
-                userDefault.removeObject(forKey: "userEmail")
-                userDefault.removeObject(forKey: "userPassword")
-            }
-            
-            
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let mainNC = sb.instantiateViewController(withIdentifier: "mainNC") as! MainNavigationController
-            present(mainNC,animated: true, completion: nil)
-        }
-        else
-        {
-            let alert = UIAlertController(title: "Error", message: "Username or Password Wrong!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-            
-        }
+    
+    func testPrint() {
+        //access fault data. NSSet..
     }
     
+    func deleteAllRecords() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            print ("There was an error")
+        }
+    }
+
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
+        getData()
+        testPrint()
+        var isfound = false
+        for i in fetchedCustomer
+        {
+            if(i.userId == userName.text)
+            {
+                isfound = true
+                if(i.password == password.text)
+                {
+                    let userDefault = UserDefaults.standard
+                    userDefault.set(userName.text, forKey: "id")
+                    if rememberMe.isOn
+                    {
+                        userDefault.set(userName.text, forKey: "userEmail")
+                        userDefault.set(password.text, forKey: "userPassword")
+                    } else {
+                        userDefault.removeObject(forKey: "userEmail")
+                        userDefault.removeObject(forKey: "userPassword")
+                    }
+                    let sb = UIStoryboard(name: "Main", bundle: nil)
+                    let mainNC = sb.instantiateViewController(withIdentifier: "mainNC") as! MainNavigationController
+                    present(mainNC,animated: true, completion: nil)
+                }
+                else{
+                    let alert = UIAlertController(title: "Error", message: "Username or Password Wrong!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+        if isfound == false
+        {
+            let alert = UIAlertController(title: "Error", message: "User not found!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
 }
 

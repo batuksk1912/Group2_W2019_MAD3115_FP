@@ -14,15 +14,6 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //save()
-        
-        
-        
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -31,30 +22,28 @@ class HomeTableViewController: UITableViewController {
         {
             switch indexPath.row {
             case 0:
-                print("View Products")
-                let sb = UIStoryboard(name: "Main", bundle: nil)
-                let productVC = sb.instantiateViewController(withIdentifier: "productVC") as! ProductsViewController
-                self.present(productVC, animated: true, completion: nil)
+                performSegue(withIdentifier: "viewProducts", sender: nil)
             case 1:
                 print("View Cart")
             default:
-                print("Invalid Option")
+                print("Error!")
             }
-        }else{
+        } else {
             switch indexPath.row {
             case 0:
                 print("View past orders")
             case 1:
-                print("Logout")
+                print("Profile")
+            case 2:
                 let sb = UIStoryboard(name: "Main", bundle: nil)
                 let loginVC = sb.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
                 self.present(loginVC, animated: true, completion: nil)
             default:
-                print("Invalid Option")
+                print("Error!")
             }
         }
     }
-    /*
+    
     func save() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -63,8 +52,8 @@ class HomeTableViewController: UITableViewController {
         let products = NSManagedObject(entity: productsEntity, insertInto: managedContext)
         
         products.setValue("3", forKey: "productId")
-        products.setValue("iPhone XR", forKey: "productName")
-        products.setValue(999.0, forKey: "price")
+        products.setValue("Macbook Pro", forKey: "productName")
+        products.setValue(2699.0, forKey: "price")
         do {
             try managedContext.save()
             print("saved.")
@@ -72,8 +61,4 @@ class HomeTableViewController: UITableViewController {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
- */
-    
-
-
 }

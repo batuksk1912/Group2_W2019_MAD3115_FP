@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04270B68224590F7007ED903 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04270B67224590F7007ED903 /* HomeTableViewController.swift */; };
 		04270B6A2245916C007ED903 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04270B692245916C007ED903 /* MainNavigationController.swift */; };
+		04270BA0224617FB007ED903 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04270B9F224617FB007ED903 /* RegisterViewController.swift */; };
 		048FA8B8223A2A3300BAEDCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FA8B7223A2A3300BAEDCF /* AppDelegate.swift */; };
 		048FA8BA223A2A3300BAEDCF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FA8B9223A2A3300BAEDCF /* LoginViewController.swift */; };
 		048FA8BD223A2A3300BAEDCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048FA8BB223A2A3300BAEDCF /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		04270B67224590F7007ED903 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		04270B692245916C007ED903 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		04270B9F224617FB007ED903 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		048FA8B4223A2A3300BAEDCF /* Group2_W2019_MAD3115_FP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Group2_W2019_MAD3115_FP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		048FA8B7223A2A3300BAEDCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		048FA8B9223A2A3300BAEDCF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				04270B67224590F7007ED903 /* HomeTableViewController.swift */,
 				04270B692245916C007ED903 /* MainNavigationController.swift */,
 				D836B9E22245C4FE007DE33C /* ProductsViewController.swift */,
+				04270B9F224617FB007ED903 /* RegisterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04270B68224590F7007ED903 /* HomeTableViewController.swift in Sources */,
+				04270BA0224617FB007ED903 /* RegisterViewController.swift in Sources */,
 				048FA8BA223A2A3300BAEDCF /* LoginViewController.swift in Sources */,
 				D836B9E32245C4FE007DE33C /* ProductsViewController.swift in Sources */,
 				D8AFADCC2245C9D3000A8054 /* ProductsTableViewCell.swift in Sources */,

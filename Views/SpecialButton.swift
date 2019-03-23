@@ -15,5 +15,4 @@ class SpecialButton: UIButton {
         self.layer.borderWidth = 2.0
         self.layer.borderColor = UIColor.white.cgColor
     }
-
 }
