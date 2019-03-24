@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Customer" representedClassName="Customer" parentEntity="User" syncable="YES" codeGenerationType="class">
+    <entity name="Customer" representedClassName="Customer" parentEntity="User" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="creditCardInfo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="customerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shippingInfo" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Orders" inverseName="customer" inverseEntity="Orders" syncable="YES"/>
-        <relationship name="shoppingCart" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShoppingCart" inverseName="customer" inverseEntity="ShoppingCart" syncable="YES"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Orders" inverseName="customer" inverseEntity="Orders" syncable="YES"/>
+        <relationship name="shoppingCart" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ShoppingCart" inverseName="customer" inverseEntity="ShoppingCart" syncable="YES"/>
     </entity>
-    <entity name="OrderDetails" representedClassName="OrderDetails" syncable="YES" codeGenerationType="class">
+    <entity name="OrderDetails" representedClassName="OrderDetails" syncable="YES">
         <attribute name="orderId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,9 +17,9 @@
         <attribute name="subTotal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="unitCost" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="orders" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Orders" inverseName="orderDetails" inverseEntity="Orders" syncable="YES"/>
-        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Products" inverseName="orderDetails" inverseEntity="Products" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Products" inverseName="orderDetails" inverseEntity="Products" syncable="YES"/>
     </entity>
-    <entity name="Orders" representedClassName="Orders" syncable="YES" codeGenerationType="class">
+    <entity name="Orders" representedClassName="Orders" syncable="YES">
         <attribute name="customerId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="customerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateCreated" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,40 +31,40 @@
         <relationship name="orderDetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OrderDetails" inverseName="orders" inverseEntity="OrderDetails" syncable="YES"/>
         <relationship name="shippingInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShippingInfo" inverseName="orders" inverseEntity="ShippingInfo" syncable="YES"/>
     </entity>
-    <entity name="Products" representedClassName="Products" syncable="YES" codeGenerationType="class">
+    <entity name="Products" representedClassName="Products" syncable="YES">
         <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="orderDetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderDetails" inverseName="products" inverseEntity="OrderDetails" syncable="YES"/>
-        <relationship name="shoppingCart" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShoppingCart" inverseName="products" inverseEntity="ShoppingCart" syncable="YES"/>
+        <relationship name="orderDetails" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="OrderDetails" inverseName="products" inverseEntity="OrderDetails" syncable="YES"/>
+        <relationship name="shoppingCart" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ShoppingCart" inverseName="products" inverseEntity="ShoppingCart" syncable="YES"/>
     </entity>
-    <entity name="ShippingInfo" representedClassName="ShippingInfo" syncable="YES" codeGenerationType="class">
+    <entity name="ShippingInfo" representedClassName="ShippingInfo" syncable="YES">
         <attribute name="shippingCost" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="shippingId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shippingType" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="orders" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Orders" inverseName="shippingInfo" inverseEntity="Orders" syncable="YES"/>
     </entity>
-    <entity name="ShoppingCart" representedClassName="ShoppingCart" syncable="YES" codeGenerationType="class">
+    <entity name="ShoppingCart" representedClassName="ShoppingCart" syncable="YES">
         <attribute name="cartId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="customerId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateAdded" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="shoppingCart" inverseEntity="Customer" syncable="YES"/>
-        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Products" inverseName="shoppingCart" inverseEntity="Products" syncable="YES"/>
+        <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="shoppingCart" inverseEntity="Customer" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Products" inverseName="shoppingCart" inverseEntity="Products" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName="User" isAbstract="YES" syncable="YES" codeGenerationType="class">
+    <entity name="User" representedClassName="User" isAbstract="YES" syncable="YES">
         <attribute name="loginStatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Customer" positionX="-249.96875" positionY="-356.0234375" width="128" height="150"/>
-        <element name="OrderDetails" positionX="68.28515625" positionY="-87.69140625" width="128" height="163"/>
+        <element name="OrderDetails" positionX="68.28515625" positionY="-87.69140625" width="128" height="165"/>
         <element name="Orders" positionX="-24.41015625" positionY="-359.44921875" width="128" height="195"/>
-        <element name="Products" positionX="396.9296875" positionY="-393.9765625" width="128" height="118"/>
+        <element name="Products" positionX="396.9296875" positionY="-393.9765625" width="128" height="120"/>
         <element name="ShippingInfo" positionX="-90.8046875" positionY="-68.08203125" width="128" height="105"/>
-        <element name="ShoppingCart" positionX="-243.484375" positionY="-106.546875" width="128" height="148"/>
-        <element name="User" positionX="-62.953125" positionY="-467.0078125" width="128" height="88"/>
+        <element name="ShoppingCart" positionX="-243.484375" positionY="-106.546875" width="128" height="150"/>
+        <element name="User" positionX="-62.953125" positionY="-467.0078125" width="128" height="90"/>
     </elements>
 </model>

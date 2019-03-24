@@ -42,7 +42,21 @@ class LoginViewController: UIViewController {
     }
     
     func testPrint() {
-        //access fault data. NSSet..
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appdelegate.persistentContainer.viewContext
+        var cu = [Customer]()
+        let request = NSFetchRequest<Customer>(entityName: "Customer")
+        request.fetchLimit = 1
+        do {
+            cu = try context.fetch(request)
+        }
+        catch { print(error) }
+        for person in cu {
+            for s in person.shoppingCart! {
+                print("Cart: ", (s as! ShoppingCart).dateAdded!)
+                break
+            }
+        }
     }
     
     func deleteAllRecords() {

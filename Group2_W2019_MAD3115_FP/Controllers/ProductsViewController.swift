@@ -42,6 +42,7 @@ class ProductsViewController: UIViewController, UITableViewDelegate, UITableView
         cart.productId = p.productId
         cart.dateAdded = currentDate()
         cart.quantity = 1
+        cart.addToProducts(p)
         c.addToShoppingCart(cart)
         do {
             try managedContext.save()
@@ -96,5 +97,4 @@ class ProductsViewController: UIViewController, UITableViewDelegate, UITableView
         let customer: Customer = users.first as! Customer
         return customer
     }
-
 }
