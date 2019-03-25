@@ -24,17 +24,16 @@ class HomeTableViewController: UITableViewController {
             case 0:
                 performSegue(withIdentifier: "viewProducts", sender: nil)
             case 1:
-                print("View Cart")
                 performSegue(withIdentifier: "viewShoppingCart", sender: nil)
             default:
                 print("Error!")
             }
-        } else {
+        } else if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
                 print("View past orders")
             case 1:
-                print("Profile")
+                performSegue(withIdentifier: "profile", sender: nil)
             case 2:
                 let sb = UIStoryboard(name: "Main", bundle: nil)
                 let loginVC = sb.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
@@ -42,6 +41,16 @@ class HomeTableViewController: UITableViewController {
             default:
                 print("Error!")
             }
+        } else {
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: "about", sender: nil)
+            case 1:
+                performSegue(withIdentifier: "contact", sender: nil)
+            default:
+                print("Error!")
+            }
+            
         }
     }
     
@@ -52,9 +61,10 @@ class HomeTableViewController: UITableViewController {
         let productsEntity = NSEntityDescription.entity(forEntityName: "Products", in: managedContext)!
         let products = NSManagedObject(entity: productsEntity, insertInto: managedContext)
         
-        products.setValue("3", forKey: "productId")
-        products.setValue("Macbook Pro", forKey: "productName")
-        products.setValue(2699.0, forKey: "price")
+        products.setValue("4", forKey: "productId")
+        products.setValue("Apple Watch", forKey: "productName")
+        products.setValue(499.0, forKey: "price")
+    
         do {
             try managedContext.save()
             print("saved.")

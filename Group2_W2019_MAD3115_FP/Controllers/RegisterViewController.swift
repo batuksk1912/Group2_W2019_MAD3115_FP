@@ -25,7 +25,6 @@ class RegisterViewController: UIViewController {
 
     @IBAction func register(_ sender: UIButton) {
         let managedContext =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
         let customer = Customer(context: managedContext)
         
         customer.userId = userName.text!
@@ -44,5 +43,4 @@ class RegisterViewController: UIViewController {
     @IBAction func cancel(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }

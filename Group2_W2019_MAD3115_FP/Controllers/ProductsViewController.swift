@@ -16,34 +16,30 @@ class ProductsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var productTable: UITableView!
     
     let userDefault = UserDefaults.standard
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Products"
         self.productTable.delegate = self
         self.productTable.dataSource = self
-        getData()
     }
     
-    func currentDate() -> String {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        let result = formatter.string(from: date)
-        return result
+    override func viewWillAppear(_ animated: Bool) {
+        fetchData()
     }
     
     @objc func addShoppingCart(sender: UIButton){
-        let p = self.products[sender.tag]
+        let customer = getCustomer(id: userDefault.string(forKey: "id")!)
+        let product = self.products[sender.tag]
         let managedContext =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let cart = ShoppingCart(context: managedContext)
-        let c = getCustomerById(contactIdentifier: userDefault.string(forKey: "id")!)
-        cart.cartId = userDefault.string(forKey: "id")!
-        cart.productId = p.productId
+        cart.cartId = UUID().uuidString
+        cart.productId = product.productId!
         cart.dateAdded = currentDate()
         cart.quantity = 1
-        cart.addToProducts(p)
-        c.addToShoppingCart(cart)
+        cart.customer = customer
+        cart.addToProducts(product)
+        //customer.addToShoppingCart(cart)
         do {
             try managedContext.save()
         } catch let error as NSError {
@@ -74,26 +70,33 @@ class ProductsViewController: UIViewController, UITableViewDelegate, UITableView
         return 80.0
     }
     
-    func getData()
+    func fetchData()
     {
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do{
             products = try managedContext.fetch(Products.fetchRequest())
+            productTable.reloadData()
         }
         catch{
-            print("Fetch Failed")
+            print("Fetch Request Failed!")
         }
     }
     
-    func getCustomerById(contactIdentifier: String) -> Customer {
+    func currentDate() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        let result = formatter.string(from: date)
+        return result
+    }
+    
+    func getCustomer(id: String) -> Customer {
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
         userFetch.fetchLimit = 1
-        userFetch.predicate = NSPredicate(format: "userId = %@", contactIdentifier)
-        
+        userFetch.predicate = NSPredicate(format: "userId = %@", id)
         let users = try! managedContext.fetch(userFetch)
-        
         let customer: Customer = users.first as! Customer
         return customer
     }

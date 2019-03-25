@@ -10,17 +10,19 @@ import UIKit
 import CoreData
 
 class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     var shoppingCarts : [ShoppingCart]? 
     
     @IBOutlet weak var shoppingCartTable: UITableView!
     
     let userDefault = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "CART ITEMS"
+        self.navigationItem.title = "Cart Items"
         self.shoppingCartTable.delegate = self
         self.shoppingCartTable.dataSource = self
-        getData()
+        fetchData()
     }
     
     @IBAction func btnCheckoutTapped(_ sender: UIButton) {
@@ -28,18 +30,18 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shoppingCarts!.count
+        return shoppingCarts!.filter{ $0.customer?.userId! == userDefault.string(forKey: "id")}.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let resultCell = tableView.dequeueReusableCell(withIdentifier: "shoppingCartCell") as! ShoppingCartTableViewCell
         let carts = self.shoppingCarts?[indexPath.row]
-        dump(carts?.productArray?[0])
-        resultCell.productID.text = carts?.productId!
-        resultCell.productName.text = carts?.productArray?[0].productName!
-        resultCell.price.text = String((carts?.productArray?[indexPath.row].price)!)
-        resultCell.removeFromCart.tag = indexPath.row
-        //resultCell.removeFromCart.addTarget(self, action: #selector(removeFromShoppingCart), for: .touchUpInside)
+        resultCell.productID.text = carts!.productId
+        for i in (carts?.products)! {
+            let p = i as! Products
+            resultCell.productName.text = p.productName
+            resultCell.price.text = String(p.price)
+        }
         return resultCell
     }
     
@@ -47,52 +49,39 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         return 80.0
     }
     
-    func getData()
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteItemFromShoppingCart(at: indexPath)
+        }
+    }
+    
+    func fetchData()
     {
-        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        do{
-            shoppingCarts = try managedContext.fetch(ShoppingCart.fetchRequest())
-        }
-        catch{
-            print("Fetch Failed")
-        }
-    }
-    
-    func getCustomerById(contactIdentifier: String) -> Customer {
-        let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
-        userFetch.fetchLimit = 1
-        userFetch.predicate = NSPredicate(format: "userId = %@", contactIdentifier)
-        
-        let users = try! managedContext.fetch(userFetch)
-        
-        let customer: Customer = users.first as! Customer
-        return customer
-    }
-    
-    func getProductById(contactIdentifier: String) -> (String) {
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
-        var sc = [ShoppingCart]()
         let request = NSFetchRequest<ShoppingCart>(entityName: "ShoppingCart")
-        request.fetchLimit = 1
-        
-        request.predicate = NSPredicate(format: "cartId = %@", contactIdentifier)
+        request.predicate = NSPredicate(format: "customer.userId = %@", userDefault.string(forKey: "id")!)
         do {
-            sc = try context.fetch(request)
+            shoppingCarts = try context.fetch(request)
+            shoppingCartTable.reloadData()
         }
         catch { print(error) }
-        var productName: String = ""
-        for person in sc {
-            for s in person.products! {
-                productName = (s as! Products).productName!
-                break
-            }
-        }
-        return productName
     }
     
-   
-
+    func deleteItemFromShoppingCart(at indexPath: IndexPath) {
+        let carts = self.shoppingCarts?[indexPath.row]
+        
+        guard let context = carts?.managedObjectContext else {
+            return
+        }
+        context.delete(carts!)
+        do {
+            try context.save()
+            shoppingCarts?.remove(at: indexPath.row)
+            shoppingCartTable.deleteRows(at: [indexPath], with: .automatic)
+        } catch let error as NSError {
+            shoppingCartTable.reloadRows(at: [indexPath], with: .automatic)
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
 }

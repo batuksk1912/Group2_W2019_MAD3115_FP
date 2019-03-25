@@ -27,12 +27,12 @@ class LoginViewController: UIViewController {
             password.text = pwd
             rememberMe.isOn = true
         }
+        //deleteAllRecords()
     }
     
-    func getData()
+    func fetchData()
     {
         let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
         do{
             fetchedCustomer = try managedContext.fetch(Customer.fetchRequest())
         }
@@ -63,7 +63,7 @@ class LoginViewController: UIViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
 
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "ShoppingCart")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         
         do {
@@ -75,8 +75,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-        getData()
-        testPrint()
+        fetchData()
         var isfound = false
         for i in fetchedCustomer
         {
@@ -86,7 +85,7 @@ class LoginViewController: UIViewController {
                 if(i.password == password.text)
                 {
                     let userDefault = UserDefaults.standard
-                    userDefault.set(userName.text, forKey: "id")
+                    userDefault.set(i.userId, forKey: "id")
                     if rememberMe.isOn
                     {
                         userDefault.set(userName.text, forKey: "userEmail")

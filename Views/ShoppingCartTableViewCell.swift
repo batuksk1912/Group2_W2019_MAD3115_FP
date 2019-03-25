@@ -13,7 +13,6 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var productID: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var productName: UILabel!
-    @IBOutlet weak var removeFromCart: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
