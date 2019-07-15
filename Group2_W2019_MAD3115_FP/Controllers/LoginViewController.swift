@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround() 
         let userDefault = UserDefaults.standard
         if let email = userDefault.string(forKey: "userEmail"){
             userName.text = email

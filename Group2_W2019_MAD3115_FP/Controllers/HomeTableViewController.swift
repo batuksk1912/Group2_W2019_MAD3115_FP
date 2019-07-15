@@ -61,9 +61,9 @@ class HomeTableViewController: UITableViewController {
         let productsEntity = NSEntityDescription.entity(forEntityName: "Products", in: managedContext)!
         let products = NSManagedObject(entity: productsEntity, insertInto: managedContext)
         
-        products.setValue("4", forKey: "productId")
-        products.setValue("Apple Watch", forKey: "productName")
-        products.setValue(499.0, forKey: "price")
+        products.setValue("5", forKey: "productId")
+        products.setValue("Apple TV", forKey: "productName")
+        products.setValue(599.0, forKey: "price")
     
         do {
             try managedContext.save()
